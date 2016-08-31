@@ -98,6 +98,7 @@ class EmployeeController extends Controller {
 			$rules = array(
 			'name' => 'required',
 			'email' => 'required|email|unique:users,email,' . $id .'',
+			'role' => 'required',
 			'password' => 'min:6|max:30|confirmed',
 			);
 			$validator = Validator::make(Input::all(), $rules);
@@ -108,6 +109,7 @@ class EmployeeController extends Controller {
 			} else {
 	            $users = User::find($id);
 	            $users->name = Input::get('name');
+	            $users->role = Input::get('role');
 	            $users->email = Input::get('email');
 	            if(!empty(Input::get('password'))) 
 	            {
@@ -131,7 +133,7 @@ class EmployeeController extends Controller {
 	{
 		if($id == 1)
 		{
-			Session::flash('message', 'You cannot delete admin on TutaPOS demo');
+			Session::flash('message', 'You cannot delete admin on Tamasha System');
 			Session::flash('alert-class', 'alert-danger');
 	            return Redirect::to('employees');
 		}
