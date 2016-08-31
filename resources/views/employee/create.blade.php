@@ -31,6 +31,11 @@
 					<input type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password">
 					</div>
 
+					<div class="form-group">
+					{!! Form::label('role', trans('Employee Role').' *') !!}
+					<input type="role" class="form-control" name="role" placeholder="Employee Role">
+					</div>
+
 					{!! Form::submit(trans('employee.submit'), array('class' => 'btn btn-primary')) !!}
 
 					{!! Form::close() !!}
