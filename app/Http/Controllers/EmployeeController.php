@@ -48,6 +48,7 @@ class EmployeeController extends Controller {
 	            $users->name = Input::get('name');
 	            $users->email = Input::get('email');
 	            $users->password = Hash::make(Input::get('password'));
+	            $users->role = Input::get('role');
 	            $users->save();
 	            
 	            Session::flash('message', 'You have successfully added employee');
