@@ -21,10 +21,32 @@
 					{!! Form::text('email', Input::old('email'), array('class' => 'form-control')) !!}
 					</div>
 
-					<div class="form-group">
+					<!--<div class="form-group">
 					{!! Form::label('role', trans('Employee Role').' *') !!}
-					<input type="role" class="form-control" name="role" placeholder="Employee Role">
+					<div class="col-sm-6">
+					<input type="radio" class="form-control" name="role" value="admin" id ="admin">
+					<label for="admin" class="radio-inline">Admin</label>
 					</div>
+					<div class="col-sm-6">
+					<input type="radio" class="form-control" name="role" value="regular" id ="regular">
+					<label for="regular" class="radio-inline">Non-Admin</label>
+					</div>
+					</div> -->
+
+				
+					<label class="control-label">Employee Role *</label>
+                    <div class="form-inline">
+    				<div class="controls-row">
+    				<div class="col-sm-6"> 
+      				<label class="radio inline">
+        			<input type="radio" name="role" value="admin" id ="admin"/> Admin </label>
+     			 	</div>
+      				<div class="col-sm-6"> 
+      				<label class="radio inline">
+        			<input type="radio" value="regular" name="role" value="regular" id ="regular" /> Non-Admin </label>
+      				</div>
+    				</div>
+  					</div>
 
 					<div class="form-group">
 					{!! Form::label('password', trans('employee.password').' *') !!}
