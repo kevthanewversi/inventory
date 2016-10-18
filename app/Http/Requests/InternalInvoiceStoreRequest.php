@@ -22,11 +22,12 @@ class InternalInvoiceRequest extends Request {
 	public function rules()
 	{
 		return [
-			'name' => 'required',
             'halflt' => 'required',
-			'1lt' => 'required',
-			'5lt' => 'required',
-			'10lt' => 'required',
+			'onelt' => 'required',
+			'onehalflt' => 'required',
+			'fivelt' => 'required',
+			'tenlt' => 'required',
+			'eighteenlt' => 'required'
 		];
 	}
 

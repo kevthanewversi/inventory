@@ -85,7 +85,7 @@
                         <a href="{{ url('/log-viewer') }}"><span class="fa fa-fw fa-eye"></span>{{trans('menu.log-viewer')}}</a>
                     </li>
                     <li id="internal-invoice">
-                        <a href="{{ url('/internal-invoice') }}"><span class="fa fa-fw fa-eye"></span>{{trans('menu.internal invoice')}}</a>
+                        <a href="{{ url('/invoices') }}"><span class="fa fa-fw fa-eye"></span>{{trans('menu.internal_invoice')}}</a>
                     </li>
 				@else
 					<li class="intro">Welcome to Tamasha Water C/O Inventory Management System</li>

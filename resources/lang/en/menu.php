@@ -14,6 +14,9 @@ return [
 	'receivings_report' 	=> 'Receivings Report',
 	'sales_report' 			=> 'Sales Report',
 	'logout'				=> 'Logout',
+	'internal_invoice'		=> 'Internal Invoice',
+	'log-viewer'			=> 'Log Viewer',
+	'appname'			    => 'Tamasha Ltd.',
 	'application_settings' 	=> 'Application Settings'
 
 ];

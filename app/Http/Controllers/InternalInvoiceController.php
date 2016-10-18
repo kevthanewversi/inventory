@@ -2,13 +2,12 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\User;
-use App\Http\Requests\EmployeeStoreRequest;
-use App\Http\Requests\EmployeeUpdateRequest;
+use App\InternalInvoice;
+use App\Http\Requests\InternalInvoiceStoreRequest;
 use \Auth, \Redirect, \Validator, \Input, \Session, \Hash;
 use Illuminate\Http\Request;
 
-class EmployeeController extends Controller {
+class InternalInvoiceController extends Controller {
 
 	public function __construct()
 	{
@@ -22,8 +21,8 @@ class EmployeeController extends Controller {
 	 */
 	public function index()
 	{
-			$employees = User::all();
-			return view('employee.index')->with('employee', $employees);
+			$invoices = InternalInvoice::all();
+			return view('internal_invoice.index')->with('invoice', $invoices);
 	}
 
 	/**
@@ -44,14 +43,16 @@ class EmployeeController extends Controller {
 	public function store(InternalInvoiceRequest $request)
 	{
 	            // store
-	            $users = new User;
-	            $users->name = Input::get('name');
-	            $users->email = Input::get('email');
-	            $users->password = Hash::make(Input::get('password'));
-	            $users->role = Input::get('role');
-	            $users->save();
+	            $invoice = new InternalInvoice;
+	            $invoice->halflt = Input::get('halflt');
+	            $invoice->onelt = Input::get('onelt');
+	            $invoice->onehalflt = Input::get('onehalflt');
+	            $invoice->fivelt = Input::get('fivelt');
+	            $invoice->tenlt = Input::get('tenlt');
+	            $invoice->eighteenlt = Input::get('eighteenlt');
+	            $invoice->save();
 	            
-	            Session::flash('message', 'You have successfully added employee');
+	            Session::flash('message', 'You have successfully added an internal invoice');
 	            return Redirect::to('internal_invoice');
 	}
 
@@ -74,9 +75,9 @@ class EmployeeController extends Controller {
 	 */
 	public function edit($id)
 	{
-		$employees = User::find($id);
-        return view('employee.edit')
-            ->with('employee', $employees);
+		$invoice = InternalInvoice::find($id);
+        return view('internal_invoice.edit')
+            ->with('invoice', $invoices);
 	}
 
 	/**
@@ -87,17 +88,10 @@ class EmployeeController extends Controller {
 	 */
 	public function update($id)
 	{
-		if($id == 1)
-		{
-			Session::flash('message', 'You cannot edit admin on TutaPOS demo');
-			Session::flash('alert-class', 'alert-danger');
-	            return Redirect::to('employees');
-		}
-		else
-		{	
+			
 			$rules = array(
 			'name' => 'required',
-			'email' => 'required|email|unique:users,email,' . $id .'',
+			'email' => 'required|email|unique:invoice,email,' . $id .'',
 			'role' => 'required',
 			'password' => 'min:6|max:30|confirmed',
 			);
@@ -107,20 +101,20 @@ class EmployeeController extends Controller {
 				 return Redirect::to('employees/' . $id . '/edit')
 				->withErrors($validator);
 			} else {
-	            $users = User::find($id);
-	            $users->name = Input::get('name');
-	            $users->role = Input::get('role');
-	            $users->email = Input::get('email');
-	            if(!empty(Input::get('password'))) 
-	            {
-	            	$users->password = Hash::make(Input::get('password'));
-	            }
-	            $users->save();
+	            $invoice = InternalInvoice::find($id);
+	            $invoice->halflt = Input::get('halflt');
+	            $invoice->onelt = Input::get('onelt');
+	            $invoice->onehalflt = Input::get('onehalflt');
+	            $invoice->fivelt = Input::get('fivelt');
+	            $invoice->tenlt = Input::get('tenlt');
+	            $invoice->eighteenlt = Input::get('eighteenlt');
+
+	            $invoice->save();
 	            // redirect
-	            Session::flash('message', 'You have successfully updated employee');
-	            return Redirect::to('employees');
+	            Session::flash('message', 'You have successfully updated an internal invoice');
+	            return Redirect::to('invoices');
 	        }
-	    }
+	    
 	}
 
 	/**
@@ -131,29 +125,22 @@ class EmployeeController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		if($id == 1)
-		{
-			Session::flash('message', 'You cannot delete admin on Tamasha System');
-			Session::flash('alert-class', 'alert-danger');
-	            return Redirect::to('employees');
-		}
-		else
-		{		
+				
 			try 
 			{
-				$users = User::find($id);
-		        $users->delete();
+				$invoice = InternalInvoice::find($id);
+		        $invoice->delete();
 		        // redirect
-		        Session::flash('message', 'You have successfully deleted employee');
+		        Session::flash('message', 'You have successfully deleted an internal invoice');
 		        return Redirect::to('employees');
 	    	}
 	    	catch(\Illuminate\Database\QueryException $e)
     		{
         		Session::flash('message', 'Integrity constraint violation: You Cannot delete a parent row');
         		Session::flash('alert-class', 'alert-danger');
-		        return Redirect::to('employees');	
+		        return Redirect::to('invoices');	
 	    	}
-	    }
+	    
 	}
 
 }
