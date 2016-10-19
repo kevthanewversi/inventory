@@ -22,7 +22,7 @@ Route::group(['middleware' => 'languange'], function()
 	Route::get('auth/logout', 'Auth\AuthController@getLogout');
 	
 	//Invoice
-	Route::resource('invoice', 'Invoice\InvoiceController');
+	//Route::resource('invoice', 'Controller\InvoiceController');
 
 	// Password reset link request routes...
 	Route::get('password/email', 'Auth\PasswordController@getEmail');
@@ -38,7 +38,7 @@ Route::group(['middleware' => 'languange'], function()
 	Route::resource('inventory', 'InventoryController');
 	Route::resource('suppliers', 'SupplierController');
 	Route::resource('receivings', 'ReceivingController');
-	Route::resource('receiving-item', 'ReceivingItemController');
+	//Route::resource('receiving-item', 'ReceivingItemController');
 	Route::resource('sales', 'SaleController');
 
 	Route::resource('reports/receivings', 'ReceivingReportController');

@@ -12,6 +12,11 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 {
     use Authenticatable, CanResetPassword;
 
+    public function internal_invoice    ()
+    {
+    return $this->hasMany('InternalInvoice');
+    }
+
     /**
      * The database table used by the model.
      *

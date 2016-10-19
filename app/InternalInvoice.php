@@ -10,6 +10,11 @@ class InternalInvoice extends Model implements AuthenticatableContract
 {
     use Authenticatable;
 
+    public function user()
+   {
+   return $this->belongsTo('App\User');
+    }
+
     /**
      * The database table used by the model.
      *
@@ -22,11 +27,12 @@ class InternalInvoice extends Model implements AuthenticatableContract
      *
      * @var array
      */
-    protected $fillable = ['halflt', 'onelt','onehalflt','fivelt','tenlt','eighteenlt',];
+    protected $fillable = ['employee_id', 'employee_name', 'halflt', 'onelt','onehalflt','fivelt','tenlt','eighteenlt',];
 
     /**
      * The attributes excluded from the model's JSON form.
      *
      * @var array
      */
+    protected $hidden = ['remember_token'];
 }

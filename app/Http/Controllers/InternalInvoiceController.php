@@ -3,6 +3,7 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\InternalInvoice;
+use App\User;
 use App\Http\Requests\InternalInvoiceStoreRequest;
 use \Auth, \Redirect, \Validator, \Input, \Session, \Hash;
 use Illuminate\Http\Request;
@@ -40,10 +41,15 @@ class InternalInvoiceController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store(InternalInvoiceRequest $request)
+	public function store(InternalInvoiceStoreRequest $request)
 	{
 	            // store
 	            $invoice = new InternalInvoice;
+	            //$user = Auth::user()->id;
+	            // $invoice->user()->associate(Auth::user()->id);
+	            // $invoice->user()->associate(Auth::user()->name); //->id
+	            $invoice->user_id = Auth::user()->id;
+	            $invoice->user_name = Auth::user()->name;
 	            $invoice->halflt = Input::get('halflt');
 	            $invoice->onelt = Input::get('onelt');
 	            $invoice->onehalflt = Input::get('onehalflt');
@@ -51,9 +57,10 @@ class InternalInvoiceController extends Controller {
 	            $invoice->tenlt = Input::get('tenlt');
 	            $invoice->eighteenlt = Input::get('eighteenlt');
 	            $invoice->save();
+	            //$user->invoice()->save($invoice);
 	            
 	            Session::flash('message', 'You have successfully added an internal invoice');
-	            return Redirect::to('internal_invoice');
+	            return Redirect::to('invoices');
 	}
 
 	/**
@@ -75,7 +82,7 @@ class InternalInvoiceController extends Controller {
 	 */
 	public function edit($id)
 	{
-		$invoice = InternalInvoice::find($id);
+		$invoices = InternalInvoice::find($id);
         return view('internal_invoice.edit')
             ->with('invoice', $invoices);
 	}
@@ -91,7 +98,6 @@ class InternalInvoiceController extends Controller {
 			
 			$rules = array(
 			'name' => 'required',
-			'email' => 'required|email|unique:invoice,email,' . $id .'',
 			'role' => 'required',
 			'password' => 'min:6|max:30|confirmed',
 			);

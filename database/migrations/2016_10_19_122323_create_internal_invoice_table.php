@@ -17,9 +17,9 @@ class CreateInternalInvoiceTable extends Migration
         {   
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->unsignedInteger('employee_id');
+            $table->unsignedInteger('user_id');
             //$table->foreign('employee_name')->references('name')->on('users');//->onDelete('cascade');
-            $table->string('employee_name')->references('name')->on('users');  
+            $table->string('user_name')->references('name')->on('users');  
             $table->string('halflt');
             $table->string('onelt');
             $table->string('onehalflt');
@@ -31,7 +31,7 @@ class CreateInternalInvoiceTable extends Migration
 
         Schema::table('internal_invoice', function(Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->foreign('employee_id')->references('id')->on('users');//->onDelete('cascade'); 
+            $table->foreign('user_id')->references('id')->on('users');//->onDelete('cascade'); 
         });
     }
 
