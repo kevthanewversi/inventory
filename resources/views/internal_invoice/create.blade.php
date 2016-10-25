@@ -10,6 +10,17 @@
 					{!! Html::ul($errors->all()) !!}
 
 					{!! Form::open(array('url' => 'invoices')) !!}
+					<br>
+					<br>
+
+					<div class="form-group">
+					<select name="employee_name" id="employee_name">
+                    @foreach($name as $names)
+     			    <option value="{{ $names->name }}">{{ $names->name}}</option>
+    				@endforeach
+					</select>
+					<br>
+					</div>
 
 					<div class="form-group">
 					{!! Form::label('halflt', trans('invoice.halflt').' *') !!}

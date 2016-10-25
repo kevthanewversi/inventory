@@ -4,7 +4,7 @@ return [
 
 	'list_invoices' => 'List Invoices',
 	'new_invoice' => 'New Invoice',
-	'person_id' => 'Person ID',
+	'person_id' => 'Data Recorder ID',
 	'name' => 'Name',
 	'halflt' => 'Half Litre',
 	'onelt' => 'One Litre',

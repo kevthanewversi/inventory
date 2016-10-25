@@ -14,7 +14,7 @@
 					
 					<div class="form-group">
 					{!! Form::label('halflt', trans('invoice.halflt').' *') !!}
-					{!! Form::text('halflt','', array('class' => 'form-control','placeholder'=>'Input::old('halflt')')) !!}
+					{!! Form::text('halflt', Input::old('halflt'), array('class' => 'form-control')) !!}
 					</div>
 
 					<div class="form-group">

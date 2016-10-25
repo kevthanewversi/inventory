@@ -23,8 +23,18 @@ class InternalInvoiceController extends Controller {
 	public function index()
 	{
 			$invoices = InternalInvoice::all();
-			return view('internal_invoice.index')->with('invoice', $invoices);
+			$names = User::all();
+
+			return view('internal_invoice.index')->with('name', $names)->with('invoice', $invoices);
 	}
+
+	// public function index()
+	// {
+	// 		$invoices = InternalInvoice::all();
+	// 		$names = User::pluck('id', 'name');	
+
+	// 		return view('internal_invoice.index',compact('invoices'));
+	// }
 
 	/**
 	 * Show the form for creating a new resource.
@@ -32,10 +42,12 @@ class InternalInvoiceController extends Controller {
 	 * @return Response
 	 */
 	public function create()
-	{
-			return view('internal_invoice.create');
-	}
+	{       //list of employee names to populate dropdown list
+		    $names = User::all();
 
+			return view('internal_invoice.create')->with('name', $names);
+	}
+      
 	/**
 	 * Store a newly created resource in storage.
 	 *
@@ -45,11 +57,10 @@ class InternalInvoiceController extends Controller {
 	{
 	            // store
 	            $invoice = new InternalInvoice;
-	            //$user = Auth::user()->id;
-	            // $invoice->user()->associate(Auth::user()->id);
-	            // $invoice->user()->associate(Auth::user()->name); //->id
+	            //id of user who entered record
 	            $invoice->user_id = Auth::user()->id;
-	            $invoice->user_name = Auth::user()->name;
+	            //name of employee who took merchandise from the store
+	            $invoice->user_name = Input::get('employee_name');
 	            $invoice->halflt = Input::get('halflt');
 	            $invoice->onelt = Input::get('onelt');
 	            $invoice->onehalflt = Input::get('onehalflt');
